@@ -1,0 +1,25 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="random.random.randint" />
+          <option value="list.__add__" />
+          <option value="int.__getitem__" />
+          <option value="dict.add" />
+          <option value="random.random.sample" />
+          <option value="random.random.choice" />
+          <option value="str.is_symlink" />
+          <option value="str.name" />
+          <option value="str.path" />
+          <option value="str.stat" />
+          <option value="str.is_file" />
+          <option value="str.is_dir" />
+          <option value="str.inode" />
+          <option value="tuple.checa_senha" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
