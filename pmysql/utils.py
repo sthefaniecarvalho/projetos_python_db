@@ -69,13 +69,26 @@ def inserir():
     desconectar(conn)
 
 
-
 def atualizar():
     """
     Função para atualizar um produto
     """
-    print('Atualizando produto...')
+    conn = conectar()
+    cursor = conn.cursor()
 
+    id = int(input('Informe o id do produto: '))
+    nome = input('Informe o novo nome do produto: ')
+    preco = float(input('Informe o novo preco do produto: '))
+    estoque = int(input('Informe o estoque do produto: '))
+
+    cursor.execute(f"UPDATE produtos SET nome= '{nome}', preco= {preco}, estoque={estoque}")
+    conn.commit()
+
+    if cursor.rowcount == 1:
+        print(f"O produto {nome} foi atualizado com sucesso")
+    else:
+        print('Não foi possivel atualizar o produto.')
+    desconectar(conn)
 
 def deletar():
     """
