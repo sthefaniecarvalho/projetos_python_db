@@ -51,16 +51,19 @@ def inserir():
     """
     Função para inserir um produto
     """
+    global nome
     conn = conectar()
     cursor = conn.cursor()
+    try:
+        nome = input('Nome do produto: ')
+        preco = float(input('Preco: '))
+        estoque = int(input('Quantidade em estoque: '))
 
-    nome = input('Nome do produto: ')
-    preco = float(input('Preco: '))
-    estoque = int(input('Quantidade em estoque: '))
-
-    cursor.execute(f"INSERT INTO produtos (nome, preco, estoque) "
-                   f"VALUES ('{nome}',{preco}, {estoque})")
-    conn.commit()
+        cursor.execute(f"INSERT INTO produtos (nome, preco, estoque) "
+                       f"VALUES ('{nome}',{preco}, {estoque})")
+        conn.commit()
+    except ValueError as e:
+        print(f'Valor inválido: {e}')
 
     if cursor.rowcount == 1:
         print(f"O produto {nome} foi inserido com sucesso")
@@ -73,16 +76,20 @@ def atualizar():
     """
     Função para atualizar um produto
     """
+    global nome
     conn = conectar()
     cursor = conn.cursor()
 
-    id = int(input('Informe o id do produto: '))
-    nome = input('Informe o novo nome do produto: ')
-    preco = float(input('Informe o novo preco do produto: '))
-    estoque = int(input('Informe o estoque do produto: '))
+    try:
+        id = int(input('Informe o id do produto: '))
+        nome = input('Informe o novo nome do produto: ')
+        preco = float(input('Informe o novo preco do produto: '))
+        estoque = int(input('Informe o estoque do produto: '))
 
-    cursor.execute(f"UPDATE produtos SET nome= '{nome}', preco= {preco}, estoque={estoque}")
-    conn.commit()
+        cursor.execute(f"UPDATE produtos SET nome= '{nome}', preco= {preco}, estoque={estoque} WHERE id ={id}")
+        conn.commit()
+    except ValueError as e:
+        print(f'Valor inválido: {e}')
 
     if cursor.rowcount == 1:
         print(f"O produto {nome} foi atualizado com sucesso")
@@ -90,11 +97,26 @@ def atualizar():
         print('Não foi possivel atualizar o produto.')
     desconectar(conn)
 
+
 def deletar():
     """
     Função para deletar um produto
-    """  
-    print('Deletando produto...')
+    """
+    conn = conectar()
+    cursor = conn.cursor()
+    try:
+        id = int(input('Informe o id do produto: '))
+
+        cursor.execute(f"DELETE FROM produtos WHERE id = {id}")
+        conn.commit()
+    except ValueError as e:
+        print(f'Valor inválido: {e}')
+
+    if cursor.rowcount == 1:
+        print(f"O produto foi deletado")
+    else:
+        print('Não foi possivel deletar o produto.')
+    desconectar(conn)
 
 def menu():
     """
