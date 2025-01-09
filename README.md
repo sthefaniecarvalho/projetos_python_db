@@ -24,7 +24,7 @@ Este repositório contém diversos exemplos práticos de **conexão e manipulaç
 
 ## 🎮 Como usar este repositório
 ``` bash
-  git clone https://github.com/seu-usuario/projetos-python-db.git
+  git clone https://github.com/seu-usuario/projetos_python_db.git
   cd projetos-python-db
 ```
 ---
